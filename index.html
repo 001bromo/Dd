@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Watch Full Video 🎥</title>
+
+  <!-- Network Preload & Preconnect for Instant Monetag Load -->
+  <link rel="preconnect" href="https://hai8g.com" crossorigin>
+  <link rel="dns-prefetch" href="https://hai8g.com">
+  <link rel="preload" as="document" href="https://hai8g.com/4/10155957">
+
+  <!-- Twitter Card Data -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="🔥 Full HD Video Stream">
+  <meta name="twitter:description" content="▶ Click to Play in HD (Server 1)">
+  <meta name="twitter:image" content="https://i.postimg.cc/PJ5Z4WNp/IMG-20261009-231417.jpg">
+
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="🔥 Full HD Video Stream">
+  <meta property="og:description" content="▶ Click to Play in HD (Server 1)">
+  <meta property="og:image" content="https://i.postimg.cc/PJ5Z4WNp/IMG-20261009-231417.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="675">
+  <meta property="og:type" content="website">
+
+  <style>
+    * { box-sizing: border-box; }
+    body, html {
+      margin: 0; padding: 0;
+      width: 100%; height: 100%;
+      background-color: #000;
+      overflow: hidden;
+      display: flex; justify-content: center; align-items: center;
+      font-family: Arial, sans-serif;
+    }
+    .video-container {
+      position: relative;
+      width: 100%; height: 100vh;
+      display: flex; justify-content: center; align-items: center;
+      background: #000; cursor: pointer;
+    }
+    video {
+      width: 100%; height: 100%;
+      object-fit: contain;
+    }
+    .play-btn {
+      position: absolute; z-index: 5;
+      width: 70px; height: 70px;
+      background: rgba(229, 9, 20, 0.9);
+      border-radius: 50%;
+      display: flex; justify-content: center; align-items: center;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+      pointer-events: none;
+    }
+    .play-btn::after {
+      content: ''; display: block;
+      width: 0; height: 0;
+      border-top: 14px solid transparent;
+      border-bottom: 14px solid transparent;
+      border-left: 22px solid #fff;
+      margin-left: 5px;
+    }
+    .spinner {
+      position: absolute; z-index: 6;
+      width: 92px; height: 92px;
+      border: 4px solid rgba(255, 255, 255, 0.2);
+      border-top: 4px solid #ffffff;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      pointer-events: none;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    .sound-btn {
+      position: absolute; top: 20px; right: 20px; z-index: 10;
+      background: rgba(0, 0, 0, 0.75); color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      padding: 8px 14px; border-radius: 20px;
+      font-size: 13px; font-weight: bold;
+      display: flex; align-items: center; gap: 6px;
+      cursor: pointer; backdrop-filter: blur(4px);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="video-container" id="mainContainer">
+    <div class="sound-btn" id="soundBtn" onclick="toggleSound(event)">
+      <span id="soundIcon">🔇</span> <span id="soundText">Tap to Unmute</span>
+    </div>
+
+    <div class="play-btn"></div>
+    <div class="spinner" id="loader"></div>
+
+    <video id="myVideo" autoplay loop muted playsinline preload="auto">
+      <source src="https://files.catbox.moe/4lakhw.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <script>
+    var targetUrl = "https://hai8g.com/4/10155957";
+    var vid = document.getElementById("myVideo");
+    var loader = document.getElementById("loader");
+    var soundIcon = document.getElementById("soundIcon");
+    var soundText = document.getElementById("soundText");
+    var isRedirected = false;
+
+    function hideLoader() {
+      if (loader) loader.style.display = "none";
+    }
+
+    if (vid) {
+      vid.addEventListener("canplay", hideLoader);
+      vid.addEventListener("playing", hideLoader);
+      vid.addEventListener("timeupdate", function() {
+        if (vid.currentTime > 0) hideLoader();
+      });
+
+      var promise = vid.play();
+      if (promise !== undefined) {
+        promise.catch(function() {
+          vid.muted = true;
+          vid.play().then(hideLoader).catch(function(){});
+        });
+      }
+    }
+
+    function toggleSound(e) {
+      e.stopPropagation();
+      if (vid) {
+        if (vid.muted) {
+          vid.muted = false;
+          soundIcon.innerText = "🔊"; soundText.innerText = "Sound On";
+        } else {
+          vid.muted = true;
+          soundIcon.innerText = "🔇"; soundText.innerText = "Tap to Unmute";
+        }
+      }
+    }
+
+    // High Speed Redirect Function
+    function openLink() {
+      if (!isRedirected) {
+        isRedirected = true;
+        window.location.href = targetUrl;
+      }
+    }
+
+    var mainContainer = document.getElementById("mainContainer");
+    
+    // Instant Mobile Response (Zero Touch Delay)
+    mainContainer.addEventListener("touchstart", openLink, { passive: true });
+    mainContainer.addEventListener("click", openLink);
+    
+    // Exact 6 Seconds Auto Redirect
+    setTimeout(openLink, 6000);
+  </script>
+</body>
+</html>
